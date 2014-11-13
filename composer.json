@@ -1,0 +1,33 @@
+{
+    "name": "justinhook/royal-mail-price-calculator",
+    "description": "A library to calculator the cost of sending a package with Royal Mail.",
+    "keywords": ["royal mail", "postage", "calculator"],
+    "homepage": "https://github.com/JustinHook/royal-mail-price-calculator",
+    "authors": [
+        {
+            "name": "Justin Hook"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/JustinHook/royal-mail-price-calculator/issues"
+    },
+    "license": "MIT",
+    "require": {
+        "doctrine/inflector": "1.*",
+        "symfony/yaml": "2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "squizlabs/php_codesniffer": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "RoyalMailPriceCalculator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RoyalMailPriceCalculator\\Tests\\": "tests/"
+        }
+    }
+}
