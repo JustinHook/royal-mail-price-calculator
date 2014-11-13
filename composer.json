@@ -1,6 +1,6 @@
 {
     "name": "justinhook/royal-mail-price-calculator",
-    "description": "A library to calculator the cost of sending a package with Royal Mail.",
+    "description": "A library to calculate the cost of sending a package with Royal Mail.",
     "keywords": ["royal mail", "postage", "calculator"],
     "homepage": "https://github.com/JustinHook/royal-mail-price-calculator",
     "authors": [
