@@ -4,6 +4,10 @@ namespace RoyalMailPriceCalculator;
 
 use RoyalMailPriceCalculator\Exceptions\UnknownPackageTypeException;
 
+/**
+ * Class Calculator
+ * @package RoyalMailPriceCalculator
+ */
 class Calculator
 {
     private $now;
@@ -14,30 +18,9 @@ class Calculator
     }
 
     /**
-     * @var Package
-     */
-    private $package;
-
-    /**
      * @var \RoyalMailPriceCalculator\Services\Service[]
      */
     private $services;
-
-    /**
-     * @return Package
-     */
-    public function getPackage()
-    {
-        return $this->package;
-    }
-
-    /**
-     * @param Package $package
-     */
-    public function setPackage(Package $package)
-    {
-        $this->package = $package;
-    }
 
     /**
      * @return \RoyalMailPriceCalculator\Services\Service[]
@@ -60,10 +43,11 @@ class Calculator
     }
 
     /**
+     * @param \RoyalMailPriceCalculator\Package $package
      * @return array
      * @throws \Exception
      */
-    public function calculatePrice()
+    public function calculatePrice(Package $package)
     {
         $services = $this->getServices();
 
@@ -74,7 +58,7 @@ class Calculator
             $prices = array();
 
             try {
-                $packageType = $service->getPackageType($this->getPackage());
+                $packageType = $service->getPackageType($package);
 
                 foreach ($priceData as $data) {
 
@@ -88,7 +72,7 @@ class Calculator
 
                     $packagePrice = 0;
                     foreach ($packageTypePrices as $weight => $price) {
-                        if ($weight >= $this->getPackage()->getWeight()) {
+                        if ($weight >= $package->getWeight()) {
                             $packagePrice = $price;
                             break;
                         }

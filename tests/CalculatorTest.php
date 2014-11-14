@@ -6,21 +6,19 @@ use RoyalMailPriceCalculator\Services\GuaranteedByOnePmService;
 use RoyalMailPriceCalculator\Services\SecondClassService;
 use RoyalMailPriceCalculator\Package;
 use RoyalMailPriceCalculator\Calculator;
+use RoyalMailPriceCalculator\Tests\Fixtures\TestService;
 
 class CalculatorTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testGettersAndSetters()
     {
-
-        $package = new Package();
-        $package->setWeight(150);
+        $service = new TestService();
 
         $calculator = new Calculator();
-        $calculator->setPackage($package);
+        $calculator->setServices($service);
 
-        $this->assertEquals($package, $calculator->getPackage());
-
+        $this->assertEquals(array($service), $calculator->getServices());
     }
 
     public function testCalculatePrice()
@@ -31,8 +29,6 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $package->setDimensions(15, 15, 0.4);
         $package->setWeight(90);
 
-        $calculator->setPackage($package);
-
         $expected = array(
             array(
                 'service' => new FirstClassService(),
@@ -42,7 +38,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
             )
         );
         $calculator->setServices(new FirstClassService());
-        $this->assertEquals($expected, $calculator->calculatePrice());
+        $this->assertEquals($expected, $calculator->calculatePrice($package));
 
         $expected = array(
             array(
@@ -55,7 +51,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
             )
         );
         $calculator->setServices(new GuaranteedByOnePmService());
-        $this->assertEquals($expected, $calculator->calculatePrice());
+        $this->assertEquals($expected, $calculator->calculatePrice($package));
 
     }
 
@@ -66,8 +62,6 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $package = new Package();
         $package->setDimensions(15, 15, 0.4);
         $package->setWeight(90);
-
-        $calculator->setPackage($package);
 
         $expected = array(
             array(
@@ -84,7 +78,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
             )
         );
         $calculator->setServices(array(new FirstClassService(), new SecondClassService()));
-        $this->assertEquals($expected, $calculator->calculatePrice());
+        $this->assertEquals($expected, $calculator->calculatePrice($package));
     }
 
     public function testCalculatePriceWithUnknownPackageType()
@@ -94,8 +88,6 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $package = new Package();
         $package->setDimensions(15, 15, 0.4);
         $package->setWeight(30000);
-
-        $calculator->setPackage($package);
 
         $expected = array(
             array(
@@ -108,6 +100,6 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
             )
         );
         $calculator->setServices(array(new FirstClassService(), new SecondClassService()));
-        $this->assertEquals($expected, $calculator->calculatePrice());
+        $this->assertEquals($expected, $calculator->calculatePrice($package));
     }
 }

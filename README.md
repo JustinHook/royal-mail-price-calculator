@@ -38,11 +38,9 @@ $package = new Package();
 $package->setDimensions(15, 15, 0.4);
 $package->setWeight(90);
 
-$calculator->setPackage($package);
-
 $calculator->setServices(array(new FirstClassService(), new GuaranteedByOnePmService()));
 
-foreach ($calculator->calculatePrice() as $calculated)
+foreach ($calculator->calculatePrice($package) as $calculated)
 {
     echo $calculated['service']->getName() . "\n";
     foreach ($calculated['prices'] as $price) {
