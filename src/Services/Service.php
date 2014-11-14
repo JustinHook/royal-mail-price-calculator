@@ -6,7 +6,7 @@ use Doctrine\Common\Inflector\Inflector;
 use RoyalMailPriceCalculator\Package;
 use Symfony\Component\Yaml\Yaml;
 
-abstract class Service
+abstract class Service implements \JsonSerializable
 {
     private $now;
     private $priceDataDir;
@@ -71,5 +71,13 @@ abstract class Service
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function jsonSerialize()
+    {
+        return $this->getName();
     }
 }

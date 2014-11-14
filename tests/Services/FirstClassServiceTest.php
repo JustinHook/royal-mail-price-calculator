@@ -62,4 +62,9 @@ class FirstClassServiceTest extends \PHPUnit_Framework_TestCase
         $service = new TestService();
         $service->getPriceData();
     }
+
+    public function testJsonSerialization()
+    {
+        $this->assertEquals('"Test Service"', json_encode(new TestService()));
+    }
 }
