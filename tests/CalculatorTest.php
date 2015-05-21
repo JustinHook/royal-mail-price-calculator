@@ -24,7 +24,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     public function testCalculatePrice()
     {
         $calculator = new Calculator();
-        $usePriceOn = new \DateTime('2015-03-01');
+        $usePriceOn = new \DateTime('2015-03-30');
 
         $package = new Package();
         $package->setDimensions(15, 15, 0.4);
@@ -34,7 +34,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
             array(
                 'service' => new FirstClassService($usePriceOn),
                 'prices' => array(
-                    array('price' => 0.62, 'compensation' => 20.00)
+                    array('price' => 0.63, 'compensation' => 20.00)
                 )
             )
         );
@@ -45,9 +45,9 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
             array(
                 'service' => new GuaranteedByOnePmService($usePriceOn),
                 'prices' => array(
-                    array('price' => 6.40, 'compensation' => 500),
-                    array('price' => 7.40, 'compensation' => 1000),
-                    array('price' => 9.40, 'compensation' => 2500)
+                    array('price' => 6.45, 'compensation' => 500),
+                    array('price' => 7.45, 'compensation' => 1000),
+                    array('price' => 9.45, 'compensation' => 2500)
                 )
             )
         );

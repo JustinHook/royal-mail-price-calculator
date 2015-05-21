@@ -47,6 +47,7 @@ abstract class Service implements \JsonSerializable
         foreach ($iterator as $file) {
             if ($file->isDir() && !$file->isDot()) {
                 $date = \DateTime::createFromFormat('Ymd', $file->getFilename());
+                $date->setTime(0, 0, 0);
                 if ($date > $latest && $date <= $this->priceOnDate) {
                     $latest = clone $date;
                 }
