@@ -24,6 +24,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     public function testCalculatePrice()
     {
         $calculator = new Calculator();
+        $usePriceOn = new \DateTime('2015-03-01');
 
         $package = new Package();
         $package->setDimensions(15, 15, 0.4);
@@ -31,18 +32,18 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 
         $expected = array(
             array(
-                'service' => new FirstClassService(),
+                'service' => new FirstClassService($usePriceOn),
                 'prices' => array(
                     array('price' => 0.62, 'compensation' => 20.00)
                 )
             )
         );
-        $calculator->setServices(new FirstClassService());
+        $calculator->setServices(new FirstClassService($usePriceOn));
         $this->assertEquals($expected, $calculator->calculatePrice($package));
 
         $expected = array(
             array(
-                'service' => new GuaranteedByOnePmService(),
+                'service' => new GuaranteedByOnePmService($usePriceOn),
                 'prices' => array(
                     array('price' => 6.40, 'compensation' => 500),
                     array('price' => 7.40, 'compensation' => 1000),
@@ -50,7 +51,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
                 )
             )
         );
-        $calculator->setServices(new GuaranteedByOnePmService());
+        $calculator->setServices(new GuaranteedByOnePmService($usePriceOn));
         $this->assertEquals($expected, $calculator->calculatePrice($package));
 
     }
@@ -58,6 +59,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     public function testCalculatePriceWithMultipleServices()
     {
         $calculator = new Calculator();
+        $usePriceOn = new \DateTime('2015-03-01');
 
         $package = new Package();
         $package->setDimensions(15, 15, 0.4);
@@ -65,25 +67,26 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 
         $expected = array(
             array(
-                'service' => new FirstClassService(),
+                'service' => new FirstClassService($usePriceOn),
                 'prices' => array(
                     array('price' => 0.62, 'compensation' => 20.00)
                 )
             ),
             array(
-                'service' => new SecondClassService(),
+                'service' => new SecondClassService($usePriceOn),
                 'prices' => array(
                     array('price' => 0.53, 'compensation' => 20.00)
                 )
             )
         );
-        $calculator->setServices(array(new FirstClassService(), new SecondClassService()));
+        $calculator->setServices(array(new FirstClassService($usePriceOn), new SecondClassService($usePriceOn)));
         $this->assertEquals($expected, $calculator->calculatePrice($package));
     }
 
     public function testCalculatePriceWithUnknownPackageType()
     {
         $calculator = new Calculator();
+        $usePriceOn = new \DateTime('2015-03-01');
 
         $package = new Package();
         $package->setDimensions(15, 15, 0.4);
@@ -91,15 +94,15 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 
         $expected = array(
             array(
-                'service' => new FirstClassService(),
+                'service' => new FirstClassService($usePriceOn),
                 'prices' => array()
             ),
             array(
-                'service' => new SecondClassService(),
+                'service' => new SecondClassService($usePriceOn),
                 'prices' => array()
             )
         );
-        $calculator->setServices(array(new FirstClassService(), new SecondClassService()));
+        $calculator->setServices(array(new FirstClassService($usePriceOn), new SecondClassService($usePriceOn)));
         $this->assertEquals($expected, $calculator->calculatePrice($package));
     }
 }
