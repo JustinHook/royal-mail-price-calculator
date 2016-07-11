@@ -27,6 +27,8 @@ Example
 ```php
 <?php
 
+require 'vendor/autoload.php';
+
 use \RoyalMailPriceCalculator\Calculator;
 use \RoyalMailPriceCalculator\Package;
 use \RoyalMailPriceCalculator\Services\GuaranteedByOnePmService;
