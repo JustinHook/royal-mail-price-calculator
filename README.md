@@ -4,6 +4,8 @@ Royal Mail Price Calculator
 
 This library allows you to calculator the cost of sending a package with Royal Mail.
 
+**Includes prices valid from March 2017.**
+
 Usage
 -----
 Install the latest version with `composer require justinhook/royal-mail-price-calculator`
