@@ -1,6 +1,7 @@
 <?php
 namespace RoyalMailPriceCalculator\Tests;
 
+use PHPUnit\Framework\TestCase;
 use RoyalMailPriceCalculator\Services\FirstClassService;
 use RoyalMailPriceCalculator\Services\GuaranteedByOnePmService;
 use RoyalMailPriceCalculator\Services\SecondClassService;
@@ -8,7 +9,7 @@ use RoyalMailPriceCalculator\Package;
 use RoyalMailPriceCalculator\Calculator;
 use RoyalMailPriceCalculator\Tests\Fixtures\TestService;
 
-class CalculatorTest extends \PHPUnit_Framework_TestCase
+class CalculatorTest extends TestCase
 {
 
     public function testGettersAndSetters()

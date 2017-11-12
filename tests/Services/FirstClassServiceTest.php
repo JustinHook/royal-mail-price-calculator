@@ -2,12 +2,13 @@
 
 namespace RoyalMailPriceCalculator\Tests\Services;
 
+use PHPUnit\Framework\TestCase;
 use RoyalMailPriceCalculator\Services\DomesticService;
 use RoyalMailPriceCalculator\Services\FirstClassService;
 use RoyalMailPriceCalculator\Tests\Fixtures\TestService;
 use RoyalMailPriceCalculator\Package;
 
-class FirstClassServiceTest extends \PHPUnit_Framework_TestCase
+class FirstClassServiceTest extends TestCase
 {
 
     /**

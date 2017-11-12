@@ -67,7 +67,7 @@ abstract class Service implements \JsonSerializable
         if (!file_exists($priceData)) {
             throw new \Exception("Price data file not found at $priceData");
         }
-        return Yaml::parse($priceData);
+        return Yaml::parse(file_get_contents($priceData));
     }
 
     /**
