@@ -2,9 +2,10 @@
 
 namespace RoyalMailPriceCalculator\Tests;
 
+use PHPUnit\Framework\TestCase;
 use RoyalMailPriceCalculator\Package;
 
-class PackageTest extends \PHPUnit_Framework_TestCase
+class PackageTest extends TestCase
 {
     public function testSettersAndGetters()
     {
